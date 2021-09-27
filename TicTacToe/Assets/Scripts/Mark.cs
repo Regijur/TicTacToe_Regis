@@ -33,15 +33,15 @@ public class Mark : MonoBehaviour
         buttons.turn = !buttons.turn;
         buttons.ChangeTurn();
 
-        if (buttons.Win(controller.Player1)) score.RestartGame(0);
-        if (buttons.Win(controller.Player2)) score.RestartGame(1);
-        
         foreach(Button b in buttons.Buttons)
         {
             if (b.interactable == false) buttonsOff++;
         }
         
-        if (buttonsOff == 9) score.RestartGame(2);
+        if (buttons.Win(controller.Player1)) score.RestartGame(0);
+        if (buttons.Win(controller.Player2)) score.RestartGame(1);
+        
+        if (buttonsOff == 9 && !buttons.Win(controller.Player1) && !buttons.Win(controller.Player2)) score.RestartGame(2);
         
     }
 }
